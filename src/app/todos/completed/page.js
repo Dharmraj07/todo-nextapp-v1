@@ -1,10 +1,9 @@
 import TodoOverview from "@/components/todo-overview";
-import Link from "next/link";
 
 // Fetch the list of todos from the API
 async function fetchListOfTodos() {
   try {
-    const apiResponse = await fetch("http://localhost:3000/api/get-todos", {
+    const apiResponse = await fetch("http://localhost:3000/api/completed-todos", {
       method: "GET",
       cache: "no-store", // Ensure fresh data on each request
     });
@@ -26,13 +25,10 @@ async function Todos() {
 
   return (
     <>
-      <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-        <Link href="todos/today">Today Todo</Link>
-      </button>
-      <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-        <Link href={"todos/completed"}>Completed Todo</Link>
-      </button>
-      <TodoOverview todoList={todoList} />;
+      <header className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-900">Completed Todos</h1>
+      </header>
+      <TodoOverview todoList={todoList} />
     </>
   ); // Pass the todo list to the TodoOverview component
 }
